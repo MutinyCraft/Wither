@@ -1,0 +1,13 @@
+# Wither Version 2.0
+
+No-Wither-Block-Damage: true
+No-Wither-Explosion-Damage: false
+No-Wither-Spawn: false
+
+Enable-World-Restriction: false
+
+Worlds-To-Block-Wither-Spawn:
+  - world
+
+Permsission-Blocked-Message: '&cYou are not allowed to spawn a Wither!'
+World-Spawn-Blocked-Message: '&cYou are not allowed to spawn a Wither in this world!'
