@@ -140,16 +140,9 @@ public class WitherEventHandler implements Listener{
 	//Wither Spawn Attempt Event
 	@EventHandler
 	public void WitherCreation(BlockPlaceEvent event){
+		
 		Player player = event.getPlayer();
-		
-		
 		Block block = event.getBlock();
-
-		System.out.println(plugin.isWorldBlock());
-		System.out.println(plugin.getBlockedWorlds());
-		System.out.println(plugin.getAllowedWorlds());
-
-
 		
 		if((event.getBlock().getType().equals(Material.SKULL)) && isAboveSoulSand(block)){
 			if(!player.hasPermission("wither.create")){
