@@ -16,6 +16,7 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+
 import com.mutinycraft.jigsaw.Wither.Wither;
 
 public class WitherEventHandler implements Listener{
@@ -144,7 +145,7 @@ public class WitherEventHandler implements Listener{
 		
 		Block block = event.getBlock();
 
-		if((event.getBlock().getTypeId() == 144) && isAboveSoulSand(block)){
+		if((event.getBlock().getType().equals(Material.SKULL)) && isAboveSoulSand(block)){
 			if(!player.hasPermission("wither.create")){
 				event.setCancelled(true);
 				player.sendMessage(plugin.getMessage());
@@ -154,7 +155,7 @@ public class WitherEventHandler implements Listener{
 				player.sendMessage(plugin.getWorldMessage());
 			}
 		}
-		else if((event.getBlock().getTypeId() == 88) && isBelowSkull(block)){
+		else if((event.getBlock().getType().equals(Material.SOUL_SAND)) && isBelowSkull(block)){
 			if(!player.hasPermission("wither.create")){
 				event.setCancelled(true);
 				player.sendMessage(plugin.getMessage());
@@ -204,13 +205,13 @@ public class WitherEventHandler implements Listener{
 	private boolean isAboveSoulSand(Block block){
 		Location blockbelowlocation = block.getLocation();
 		blockbelowlocation.setY(block.getY() - 1);
-		return(blockbelowlocation.getBlock().getTypeId() == 88);
+		return(blockbelowlocation.getBlock().getType().equals(Material.SOUL_SAND));
 	}
 	
 	private boolean isBelowSkull(Block block){
 		Location blockabovelocation = block.getLocation();
 		blockabovelocation.setY(block.getY() + 1);
-		return(blockabovelocation.getBlock().getTypeId() == 144);
+		return(blockabovelocation.getBlock().getType().equals(Material.SKULL));
 	}
 	
 	private boolean isNearWitherSkull(Block block){
@@ -218,21 +219,21 @@ public class WitherEventHandler implements Listener{
 		blockNearLocation.setY(block.getY() + 1);
 		//X Check
 		blockNearLocation.setX(block.getX() + 1);
-		if(blockNearLocation.getBlock().getTypeId() == 144){
+		if(blockNearLocation.getBlock().getType().equals(Material.SKULL)){
 			return true;
 		}
 		blockNearLocation.setX(block.getX() - 1);
-		if(blockNearLocation.getBlock().getTypeId() == 144){
+		if(blockNearLocation.getBlock().getType().equals(Material.SKULL)){
 			return true;
 		}
 		//Y Check
 		blockNearLocation.setX(block.getX());
 		blockNearLocation.setZ(block.getZ() + 1);
-		if(blockNearLocation.getBlock().getTypeId() == 144){
+		if(blockNearLocation.getBlock().getType().equals(Material.SKULL)){
 			return true;
 		}
 		blockNearLocation.setZ(block.getZ() - 1);
-		if(blockNearLocation.getBlock().getTypeId() == 144){
+		if(blockNearLocation.getBlock().getType().equals(Material.SKULL)){
 			return true;
 		}
 		return false;
