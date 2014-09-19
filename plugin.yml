@@ -1,6 +1,6 @@
 name: Wither
 main: com.mutinycraft.jigsaw.Wither.Wither
-version: 2.1
+version: 2.2
 author: Jigsaw
 description: Control things related to the Wither.
 website: http://dev.bukkit.org/server-mods/wither/
