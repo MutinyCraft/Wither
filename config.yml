@@ -10,5 +10,8 @@ Unspecified-World-Restriction-Default: false
 Worlds-To-Block-Wither-Spawn:
   - world
 
+Worlds-To-Block-Wither-Spawn:
+  - some_example_world
+  
 Permsission-Blocked-Message: '&cYou are not allowed to spawn a Wither!'
 World-Spawn-Blocked-Message: '&cYou are not allowed to spawn a Wither in this world!'
