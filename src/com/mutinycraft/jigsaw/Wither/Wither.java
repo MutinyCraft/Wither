@@ -24,7 +24,9 @@ public class Wither extends JavaPlugin implements Listener{
     private boolean blockWitherExplosion;
     private boolean blockWitherSpawn;
     private boolean blockWorlds;
-    private List<String> worlds;
+    private boolean blockWorldsDefault;
+    private List<String> blockedWorlds;
+    private List<String> allowedWorlds;
     private String message;
     private String worldMessage;
 	private static final String VERSION = " v2.1";
@@ -59,7 +61,10 @@ public class Wither extends JavaPlugin implements Listener{
 		blockWitherExplosion = config.getBoolean("No-Wither-Explosion-Damage", false);
 		blockWitherSpawn = config.getBoolean("No-Wither-Spawn", false);
 		blockWorlds = config.getBoolean("Enable-World-Restriction", false);
-		worlds = config.getStringList("Worlds-To-Block-Wither-Spawn");
+		blockWorldsDefault = config.getBoolean("Unspecified-World-Restriction-Default", false);
+		blockedWorlds = config.getStringList("Worlds-To-Block-Wither-Spawn");
+		allowedWorlds = config.getStringList("Worlds-To-Allow-Wither-Spawn");
+
 		message = ChatColor.translateAlternateColorCodes('&',
 				  config.getString("Permsission-Blocked-Message", "&cYou are not allowed to spawn a Wither!"));
 		worldMessage = ChatColor.translateAlternateColorCodes('&', 
@@ -119,8 +124,16 @@ public class Wither extends JavaPlugin implements Listener{
 		return blockWorlds;
 	}
 	
-	public List<String> getWorlds(){
-		return worlds;
+	public boolean worldIsAllowedByDefualt(){
+		return blockWorldsDefault;
+	}
+	
+	public List<String> getBlockedWorlds(){
+		return blockedWorlds;
+	}
+	
+	public List<String> getAllowedWorlds(){
+		return allowedWorlds;
 	}
 	
 	public String getMessage(){

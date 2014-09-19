@@ -150,9 +150,18 @@ public class WitherEventHandler implements Listener{
 				event.setCancelled(true);
 				player.sendMessage(plugin.getMessage());
 			}
-			else if(plugin.isWorldBlock() && isBlockedWorld(event.getPlayer().getWorld().getName())){
-				event.setCancelled(true);
-				player.sendMessage(plugin.getWorldMessage());
+			else if(plugin.isWorldBlock()){
+				if (isBlockedWorld(event.getPlayer().getWorld().getName())){
+					event.setCancelled(true);
+					player.sendMessage(plugin.getWorldMessage());
+				}
+				else if (isAllowedWorld(event.getPlayer().getWorld().getName())){
+					
+				}
+				else if (!plugin.worldIsAllowedByDefualt()){
+					event.setCancelled(true);
+					player.sendMessage(plugin.getWorldMessage());
+				}
 			}
 		}
 		else if((event.getBlock().getType().equals(Material.SOUL_SAND)) && isBelowSkull(block)){
@@ -160,9 +169,18 @@ public class WitherEventHandler implements Listener{
 				event.setCancelled(true);
 				player.sendMessage(plugin.getMessage());
 			}
-			else if(plugin.isWorldBlock() && isBlockedWorld(event.getPlayer().getWorld().getName())){
-				event.setCancelled(true);
-				player.sendMessage(plugin.getWorldMessage());
+			else if(plugin.isWorldBlock()){
+				if (isBlockedWorld(event.getPlayer().getWorld().getName())){
+					event.setCancelled(true);
+					player.sendMessage(plugin.getWorldMessage());
+				}
+				else if (isAllowedWorld(event.getPlayer().getWorld().getName())){
+					
+				}
+				else if (!plugin.worldIsAllowedByDefualt()){
+					event.setCancelled(true);
+					player.sendMessage(plugin.getWorldMessage());
+				}
 			}
 		}
 	}
@@ -193,8 +211,18 @@ public class WitherEventHandler implements Listener{
 	
 	//World Check
 	private boolean isBlockedWorld(String world){
-		for(int i = 0; i < plugin.getWorlds().size(); i++){
-			String worldName = (String) plugin.getWorlds().get(i);
+		for(int i = 0; i < plugin.getBlockedWorlds().size(); i++){
+			String worldName = (String) plugin.getBlockedWorlds().get(i);
+			if(worldName.equals(world)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private boolean isAllowedWorld(String world){
+		for(int i = 0; i < plugin.getBlockedWorlds().size(); i++){
+			String worldName = (String) plugin.getAllowedWorlds().get(i);
 			if(worldName.equals(world)){
 				return true;
 			}
